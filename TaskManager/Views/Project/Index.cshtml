@@ -7,7 +7,7 @@
 
 <h1>Projects</h1>
 <p>
-    <a asp-action="Create" class="btn btn-primary">Create New</a>
+    <a asp-action="Create" asp-controller="Project" class="btn btn-primary">Create New</a>
 </p>
 
 <table class="table">
@@ -27,3 +27,8 @@
         }
     </tbody>
 </table>
+
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

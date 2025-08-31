@@ -21,10 +21,11 @@ public class ProjectController : Controller
         return View();
     }
     [HttpPost]
-    public IActionResult Create(Project project)
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Create(Project project) // Changed to Task<IActionResult>
     {
         _context.Projects.Add(project);
-        var result = _context.SaveChanges();
+        var result = await _context.SaveChangesAsync();
         if(result > 0)
         {
             TempData["SuccessMsg"] = "Project created successfully!";
