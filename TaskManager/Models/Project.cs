@@ -11,6 +11,11 @@ public class Project
     public string Name { get; set; }
     [StringLength(255, ErrorMessage = "Project Description must be less than or equal to 255 characters.")]
     public string? Description { get; set; }
+
+    [ForeignKey("Department")]
+    public int DepartmentId { get; set; }
+
+    public Department Department { get; set; } = null!;
     [NotMapped]
     public ICollection<Tasklist> Tasklists { get; set; } = new List<Tasklist>();
 }

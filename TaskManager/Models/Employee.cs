@@ -18,6 +18,10 @@ public class Employee
     public string? ProfileImagePath { get; set; }
     [NotMapped]
     public IFormFile? ProfileImage { get; set; }
+    [ForeignKey("Department")]
+    public int DepartmentId { get; set; }
+
+    public Department Department { get; set; } = null!;
     [NotMapped]
     public ICollection<AssignTask> AssignTasks { get; set; } = new List<AssignTask>();
 }

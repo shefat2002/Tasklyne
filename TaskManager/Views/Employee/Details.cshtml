@@ -35,10 +35,9 @@
                         <strong>Phone:</strong> @Model.Phone
                     </div>
 
-                    
-
-                    
-
+                    <div>
+                        <strong>Department:</strong> @(Model.Department != null ? Model.Department.Name : "N/A")
+                    </div>
 
                 </div>
                 <div class="buttons text-center mt-3">

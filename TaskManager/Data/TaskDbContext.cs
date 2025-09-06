@@ -16,4 +16,5 @@ public class TaskDbContext : IdentityDbContext
     public DbSet<Project> Projects { get; set; }
     public DbSet<Tasklist> Tasklists { get; set; }
     public DbSet<AssignTask> AssignTasks { get; set; }
+    public DbSet<Department> Departments { get; set; }
 }
