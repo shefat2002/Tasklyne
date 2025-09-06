@@ -32,38 +32,27 @@ public class TasklistController : Controller
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public IActionResult Create(Tasklist tasklist, List<int> Projectlist)
+    public IActionResult Create(Tasklist tasklist)
     {
         var result = 0;
         try
         {
             if (ModelState.IsValid)
             {
-                if (Projectlist != null && Projectlist.Count > 0)
+                var project = _context.Projects.Find(tasklist.ProjectId);
+                if (project != null)
                 {
-                    foreach (var projectId in Projectlist)
+                    tasklist.Project = project;
+                    _context.Tasklists.Add(tasklist);
+                    result = _context.SaveChanges();
+                    if (result > 0)
                     {
-                        var addnew = new Tasklist
-                        {
-                            CreatedAt = tasklist.CreatedAt,
-                        };
-                        var project = _context.Projects.Find(projectId);
-                        if (project != null)
-                        {
-                            addnew.Project = project;
-                            addnew.ProjectId = project.Id;
-                        }
-                        _context.Tasklists.Add(addnew);
+                        TempData["SuccessMsg"] = "Task created successfully!";
                     }
-                }
-                result = _context.SaveChanges();
-                if (result > 0)
-                {
-                    TempData["SuccessMsg"] = "Task created successfully!";
-                }
-                else
-                {
-                    TempData["ErrorMsg"] = "Failed to create task.";
+                    else
+                    {
+                        TempData["ErrorMsg"] = "Failed to create task.";
+                    }
                 }
                 return RedirectToAction("Index");
             }
@@ -72,7 +61,9 @@ public class TasklistController : Controller
         {
             TempData["ErrorMsg"] = $"An error occurred: {ex.Message}";
         }
+        tasklist.ProjectList = _context.Projects.OrderBy(o => o.Name).ToList();
         return View(tasklist);
+
     }
 
     [HttpGet]
@@ -98,9 +89,15 @@ public class TasklistController : Controller
                 var existingTasklist = _context.Tasklists.Find(tasklist.Id);
                 if (existingTasklist != null)
                 {
+                    existingTasklist.Title = tasklist.Title;
+                    existingTasklist.Description = tasklist.Description;
                     existingTasklist.IsCompleted = tasklist.IsCompleted;
-                    existingTasklist.CreatedAt = tasklist.CreatedAt;
-                    existingTasklist.ProjectId = tasklist.ProjectId;
+                    var project = _context.Projects.Find(tasklist.ProjectId);
+                    if (project != null)
+                    {
+                        existingTasklist.Project = project;
+                        existingTasklist.ProjectId = project.Id;
+                    }
                     _context.Tasklists.Update(existingTasklist);
                     result = _context.SaveChanges();
                     if (result > 0)
@@ -154,6 +151,7 @@ public class TasklistController : Controller
             TempData["ErrorMsg"] = $"An error occurred: {ex.Message}";
         }
         return RedirectToAction("Index");
+
     }
 
 }

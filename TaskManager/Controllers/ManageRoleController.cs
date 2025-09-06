@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Tasklyne.Controllers;
 
+//[Authorize(Roles = "Admin")]
 public class ManageRoleController : Controller
 {
     private RoleManager<IdentityRole> _roleManager;

@@ -34,47 +34,124 @@ public class AssignTaskController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(AssignTask assignedTask, List<int> Tasklist)
     {
-        if (ModelState.IsValid)
+        try
         {
-            int result = 0;
-            foreach (var taskId in Tasklist)
+            if (ModelState.IsValid)
             {
-                var addnew = new AssignTask
+                int result = 0;
+                foreach (var taskId in Tasklist)
                 {
-                    EmployeeId = assignedTask.EmployeeId,
-                    AssignDate = assignedTask.AssignDate,
-                    DueDate = assignedTask.DueDate,
-                    SubmitDate = assignedTask.SubmitDate,
-                    Status = assignedTask.Status,
-                    Remarks = assignedTask.Remarks
-                };
-                var task = _context.Tasklists.Find(taskId);
-                if (task != null)
-                {
-                    addnew.Tasklist = task;
-                    addnew.TaskId = task.Id;
+                    var addnew = new AssignTask
+                    {
+                        EmployeeId = assignedTask.EmployeeId,
+                        AssignDate = assignedTask.AssignDate,
+                        DueDate = assignedTask.DueDate,
+                        SubmitDate = assignedTask.SubmitDate,
+                        Status = assignedTask.Status,
+                        Remarks = assignedTask.Remarks
+                    };
+                    var task = _context.Tasklists.Find(taskId);
+                    if (task != null)
+                    {
+                        addnew.Tasklist = task;
+                        addnew.TaskId = task.Id;
+                    }
+                    _context.AssignTasks.Add(addnew);
                 }
-                _context.AssignTasks.Add(addnew);
-
+                result = _context.SaveChanges();
+                if (result > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "Failed to create assigned task. Please try again.");
             }
-            result = _context.SaveChanges();
-            if (result > 0)
+            else
             {
-                return RedirectToAction("Index");
+                var message = string.Join(" | ", ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage));
+                ModelState.AddModelError(" ", message);
             }
-            ModelState.AddModelError("", "Failed to create assigned task. Please try again.");
-
         }
-        else
+        catch (Exception ex)
         {
-            var message = string.Join(" | ", ModelState.Values
-    .SelectMany(v => v.Errors)
-    .Select(e => e.ErrorMessage));
-            ModelState.AddModelError(" ", message);
+            ModelState.AddModelError("", $"An error occurred: {ex.Message}");
         }
         assignedTask.Employees = _context.Employees.OrderBy(u => u.Name).ToList();
         assignedTask.Tasklists = _context.Tasklists.OrderBy(t => t.Title).ToList();
         return View(assignedTask);
+    }
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        var assignedTask = _context.AssignTasks.Find(id);
+        if (assignedTask == null)
+        {
+            return NotFound();
+        }
+        assignedTask.Employees = _context.Employees.OrderBy(u => u.Name).ToList();
+        assignedTask.Tasklists = _context.Tasklists.OrderBy(t => t.Title).ToList();
+        return View(assignedTask);
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Edit(AssignTask assignedTask)
+    {
+        try
+        {
+            if (ModelState.IsValid)
+            {
+                var existingTask = _context.AssignTasks.Find(assignedTask.Id);
+                if (existingTask == null)
+                {
+                    return NotFound();
+                }
+                existingTask.EmployeeId = assignedTask.EmployeeId;
+                existingTask.TaskId = assignedTask.TaskId;
+                existingTask.AssignDate = assignedTask.AssignDate;
+                existingTask.DueDate = assignedTask.DueDate;
+                existingTask.SubmitDate = assignedTask.SubmitDate;
+                existingTask.Status = assignedTask.Status;
+                existingTask.Remarks = assignedTask.Remarks;
+                _context.AssignTasks.Update(existingTask);
+                var result = _context.SaveChanges();
+                if (result > 0)
+                {
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "Failed to update assigned task. Please try again.");
+            }
+            else
+            {
+                var message = string.Join(" | ", ModelState.Values
+                    .SelectMany(v => v.Errors)
+                    .Select(e => e.ErrorMessage));
+                ModelState.AddModelError(" ", message);
+            }
+        }
+        catch (Exception ex)
+        {
+            ModelState.AddModelError("", $"An error occurred: {ex.Message}");
+        }
+        assignedTask.Employees = _context.Employees.OrderBy(u => u.Name).ToList();
+        assignedTask.Tasklists = _context.Tasklists.OrderBy(t => t.Title).ToList();
+        return View(assignedTask);
+    }
+    public IActionResult Delete(int id)
+    {
+        var assignedTask = _context.AssignTasks.Find(id);
+        if (assignedTask == null)
+        {
+            return NotFound();
+        }
+        _context.AssignTasks.Remove(assignedTask);
+        var result = _context.SaveChanges();
+        if (result > 0)
+        {
+            return RedirectToAction("Index");
+        }
+        ModelState.AddModelError("", "Failed to delete assigned task. Please try again.");
+        return RedirectToAction("Index");
     }
 
 }

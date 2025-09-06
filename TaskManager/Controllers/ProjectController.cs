@@ -35,18 +35,19 @@ public class ProjectController : Controller
             var result = await _context.SaveChangesAsync();
             if (result > 0)
             {
-                TempData["SuccessMsg"] = "Project created successfully!";
+                return RedirectToAction("Index");
             }
             else
             {
-                TempData["ErrorMsg"] = "Failed to create project.";
+                ModelState.AddModelError(string.Empty, "Failed to create project.");
+                return View(project);
             }
         }
         catch (Exception)
         {
-            TempData["ErrorMsg"] = "An unexpected error occurred while creating the project.";
+            ModelState.AddModelError(string.Empty, "An unexpected error occurred while creating the project.");
+            return View(project);
         }
-
         return RedirectToAction("Index");
     }
 
@@ -76,16 +77,16 @@ public class ProjectController : Controller
             var result = await _context.SaveChangesAsync();
             if (result > 0)
             {
-                TempData["SuccessMsg"] = "Project updated successfully!";
+                ModelState.AddModelError(string.Empty, "Project updated successfully!");
             }
             else
             {
-                TempData["ErrorMsg"] = "Failed to update project.";
+                ModelState.AddModelError(string.Empty, "Failed to update project.");
             }
         }
         catch (Exception)
         {
-            TempData["ErrorMsg"] = "An unexpected error occurred while updating the project.";
+            ModelState.AddModelError(string.Empty, "An unexpected error occurred while updating the project.");
         }
         return RedirectToAction("Index");
     }
@@ -105,16 +106,16 @@ public class ProjectController : Controller
             var result = _context.SaveChanges();
             if (result > 0)
             {
-                TempData["SuccessMsg"] = "Project deleted successfully!";
+                ModelState.AddModelError(string.Empty, "Project deleted successfully!");
             }
             else
             {
-                TempData["ErrorMsg"] = "Failed to delete project.";
+                ModelState.AddModelError(string.Empty, "Failed to delete project.");
             }
         }
         catch (Exception)
         {
-            TempData["ErrorMsg"] = "An unexpected error occurred while deleting the project.";
+            ModelState.AddModelError(string.Empty, "An unexpected error occurred while deleting the project.");
         }
         return RedirectToAction("Index");
     }
