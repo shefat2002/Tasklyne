@@ -22,17 +22,97 @@ public class ProjectController : Controller
     }
     [HttpPost]
     [ValidateAntiForgeryToken]
-    public async Task<IActionResult> Create(Project project) // Changed to Task<IActionResult>
+    public async Task<IActionResult> Create(Project project)
     {
-        _context.Projects.Add(project);
-        var result = await _context.SaveChangesAsync();
-        if(result > 0)
+        if (!ModelState.IsValid)
         {
-            TempData["SuccessMsg"] = "Project created successfully!";
+            return View(project);
         }
-        else
+
+        try
         {
-            TempData["ErrorMsg"] = "Failed to create project.";
+            _context.Projects.Add(project);
+            var result = await _context.SaveChangesAsync();
+            if (result > 0)
+            {
+                TempData["SuccessMsg"] = "Project created successfully!";
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "Failed to create project.";
+            }
+        }
+        catch (Exception)
+        {
+            TempData["ErrorMsg"] = "An unexpected error occurred while creating the project.";
+        }
+
+        return RedirectToAction("Index");
+    }
+
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        var project = _context.Projects.Find(id);
+        if(project == null)
+        {
+            return NotFound();
+        }
+        return View(project);
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public async Task<IActionResult> Edit(Project project) 
+    {
+        var existingProject = _context.Projects.Find(project.Id);
+        if (existingProject == null)
+        {
+            return NotFound();
+        }
+        try
+        {
+            existingProject.Name = project.Name;
+            existingProject.Description = project.Description;
+            var result = await _context.SaveChangesAsync();
+            if (result > 0)
+            {
+                TempData["SuccessMsg"] = "Project updated successfully!";
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "Failed to update project.";
+            }
+        }
+        catch (Exception)
+        {
+            TempData["ErrorMsg"] = "An unexpected error occurred while updating the project.";
+        }
+        return RedirectToAction("Index");
+    }
+
+    public IActionResult Delete(int id)
+    {
+        var project = _context.Projects.Find(id);
+        if (project == null)
+        {
+            return NotFound();
+        }
+        try
+        {
+            _context.Projects.Remove(project);
+            var result = _context.SaveChanges();
+            if (result > 0)
+            {
+                TempData["SuccessMsg"] = "Project deleted successfully!";
+            }
+            else
+            {
+                TempData["ErrorMsg"] = "Failed to delete project.";
+            }
+        }
+        catch (Exception)
+        {
+            TempData["ErrorMsg"] = "An unexpected error occurred while deleting the project.";
         }
         return RedirectToAction("Index");
     }

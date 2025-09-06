@@ -15,9 +15,7 @@ public class AssignTaskController : Controller
     }
     public IActionResult Index()
     {
-        var assignedTasks = _context.AssignTasks.Include("Task")
-            .Include("Employee").OrderBy(u => u.Employees).ToList();
-
+        var assignedTasks = _context.AssignTasks.ToList();
         return View(assignedTasks);
     }
 
@@ -78,4 +76,5 @@ public class AssignTaskController : Controller
         assignedTask.Tasklists = _context.Tasklists.OrderBy(t => t.Title).ToList();
         return View(assignedTask);
     }
+
 }
