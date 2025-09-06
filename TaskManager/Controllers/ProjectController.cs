@@ -90,6 +90,8 @@ public class ProjectController : Controller
         return RedirectToAction("Index");
     }
 
+    [HttpPost]
+    [ValidateAntiForgeryToken]
     public IActionResult Delete(int id)
     {
         var project = _context.Projects.Find(id);

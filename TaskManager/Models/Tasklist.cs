@@ -6,10 +6,6 @@ namespace Tasklyne.Models;
 
 public class Tasklist
 {
-    public Tasklist()
-    {
-        ProjectList = new List<Project>();
-    }
     public int Id { get; set; }
     [Required(ErrorMessage = "You must enter the Task Title!")]
     [StringLength(25, ErrorMessage = "Title must be less than or equal to 25 characters.")]

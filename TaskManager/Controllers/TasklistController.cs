@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
+
 using Tasklyne.Data;
 using Tasklyne.Models;
 
@@ -33,40 +34,126 @@ public class TasklistController : Controller
     [ValidateAntiForgeryToken]
     public IActionResult Create(Tasklist tasklist, List<int> Projectlist)
     {
-
         var result = 0;
-        if(ModelState.IsValid)
+        try
         {
-            if(Projectlist != null && Projectlist.Count > 0)
+            if (ModelState.IsValid)
             {
-                foreach (var projectId in Projectlist)
+                if (Projectlist != null && Projectlist.Count > 0)
                 {
-                    var addnew = new Tasklist
+                    foreach (var projectId in Projectlist)
                     {
-                        CreatedAt = tasklist.CreatedAt,
-                    };
-                    var project = _context.Projects.Find(projectId);
-                    if (project != null)
-                    {
-                        addnew.Project = project;
-                        addnew.ProjectId = project.Id;
+                        var addnew = new Tasklist
+                        {
+                            CreatedAt = tasklist.CreatedAt,
+                        };
+                        var project = _context.Projects.Find(projectId);
+                        if (project != null)
+                        {
+                            addnew.Project = project;
+                            addnew.ProjectId = project.Id;
+                        }
+                        _context.Tasklists.Add(addnew);
                     }
-                    _context.Tasklists.Add(addnew);
-
                 }
+                result = _context.SaveChanges();
+                if (result > 0)
+                {
+                    TempData["SuccessMsg"] = "Task created successfully!";
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "Failed to create task.";
+                }
+                return RedirectToAction("Index");
             }
-            result = _context.SaveChanges();
-            if(result > 0)
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMsg"] = $"An error occurred: {ex.Message}";
+        }
+        return View(tasklist);
+    }
+
+    [HttpGet]
+    public IActionResult Edit(int id)
+    {
+        var tasklist = _context.Tasklists.Include(t => t.Project).FirstOrDefault(t => t.Id == id);
+        if (tasklist == null)
+        {
+            return NotFound();
+        }
+        tasklist.ProjectList = _context.Projects.OrderBy(o => o.Name).ToList();
+        return View(tasklist);
+    }
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Edit(Tasklist tasklist)
+    {
+        var result = 0;
+        try
+        {
+            if (ModelState.IsValid)
             {
-                TempData["SuccessMsg"] = "Task created successfully!";
+                var existingTasklist = _context.Tasklists.Find(tasklist.Id);
+                if (existingTasklist != null)
+                {
+                    existingTasklist.IsCompleted = tasklist.IsCompleted;
+                    existingTasklist.CreatedAt = tasklist.CreatedAt;
+                    existingTasklist.ProjectId = tasklist.ProjectId;
+                    _context.Tasklists.Update(existingTasklist);
+                    result = _context.SaveChanges();
+                    if (result > 0)
+                    {
+                        TempData["SuccessMsg"] = "Task updated successfully!";
+                    }
+                    else
+                    {
+                        TempData["ErrorMsg"] = "Failed to update task.";
+                    }
+                }
+                return RedirectToAction("Index");
+            }
+        }
+        catch (Exception ex)
+        {
+            TempData["ErrorMsg"] = $"An error occurred: {ex.Message}";
+        }
+        tasklist.ProjectList = _context.Projects.OrderBy(o => o.Name).ToList();
+        return View(tasklist);
+    }
+
+    [HttpPost]
+    [ValidateAntiForgeryToken]
+    public IActionResult Delete(int id)
+    {
+        var result = 0;
+        try
+        {
+            var tasklist = _context.Tasklists.Find(id);
+            if (tasklist != null)
+            {
+                _context.Tasklists.Remove(tasklist);
+                result = _context.SaveChanges();
+                if (result > 0)
+                {
+                    TempData["SuccessMsg"] = "Task deleted successfully!";
+                }
+                else
+                {
+                    TempData["ErrorMsg"] = "Failed to delete task.";
+                }
             }
             else
             {
-                TempData["ErrorMsg"] = "Failed to create task.";
+                TempData["ErrorMsg"] = "Task not found.";
             }
-            return RedirectToAction("Index");
         }
-        return View(tasklist);
+        catch (Exception ex)
+        {
+            TempData["ErrorMsg"] = $"An error occurred: {ex.Message}";
+        }
+        return RedirectToAction("Index");
     }
 
 }
