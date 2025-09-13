@@ -7,14 +7,13 @@ using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasklyne.Data;
 
-
 #nullable disable
 
-namespace TaskManager.Migrations
+namespace Tasklyne.Migrations
 {
     [DbContext(typeof(TaskDbContext))]
-    [Migration("20250824054635_initial")]
-    partial class initial
+    [Migration("20250912051620_new")]
+    partial class @new
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -224,7 +223,7 @@ namespace TaskManager.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("TaskManager.Models.AssignTask", b =>
+            modelBuilder.Entity("Tasklyne.Models.AssignTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -256,16 +255,39 @@ namespace TaskManager.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("TaskId");
+
                     b.ToTable("AssignTasks");
                 });
 
-            modelBuilder.Entity("TaskManager.Models.Employee", b =>
+            modelBuilder.Entity("Tasklyne.Models.Department", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("Tasklyne.Models.Employee", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Email")
                         .IsRequired()
@@ -286,16 +308,21 @@ namespace TaskManager.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentId");
+
                     b.ToTable("Employees");
                 });
 
-            modelBuilder.Entity("TaskManager.Models.Project", b =>
+            modelBuilder.Entity("Tasklyne.Models.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
 
                     b.Property<string>("Description")
                         .HasMaxLength(255)
@@ -308,10 +335,12 @@ namespace TaskManager.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("DepartmentId");
+
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("TaskManager.Models.Tasklist", b =>
+            modelBuilder.Entity("Tasklyne.Models.Tasklist", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -395,9 +424,42 @@ namespace TaskManager.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("TaskManager.Models.Tasklist", b =>
+            modelBuilder.Entity("Tasklyne.Models.AssignTask", b =>
                 {
-                    b.HasOne("TaskManager.Models.Project", "Project")
+                    b.HasOne("Tasklyne.Models.Tasklist", "Tasklist")
+                        .WithMany()
+                        .HasForeignKey("TaskId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Tasklist");
+                });
+
+            modelBuilder.Entity("Tasklyne.Models.Employee", b =>
+                {
+                    b.HasOne("Tasklyne.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("Tasklyne.Models.Project", b =>
+                {
+                    b.HasOne("Tasklyne.Models.Department", "Department")
+                        .WithMany()
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
+                });
+
+            modelBuilder.Entity("Tasklyne.Models.Tasklist", b =>
+                {
+                    b.HasOne("Tasklyne.Models.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)

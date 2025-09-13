@@ -44,4 +44,67 @@ public class ManageRoleController : Controller
         }
         return View();
     }
+
+    [HttpGet]
+    public IActionResult Edit(string id)
+    {
+        var role = _roleManager.FindByIdAsync(id).Result;
+        if (role != null)
+        {
+            return View(role);
+        }
+        return RedirectToAction("Index");
+    }
+    [HttpPost]
+    public async Task<IActionResult> Edit(string id, string roleName)
+    {
+        var role = await _roleManager.FindByIdAsync(id);
+        if (role != null)
+        {
+            role.Name = roleName;
+            var result = await _roleManager.UpdateAsync(role);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                string msg = "";
+                foreach (var error in result.Errors)
+                {
+                    //  msg += error.Code +  error.Description+ "\n";
+                    msg += $"{error.Code} - {error.Description} \n";
+                }
+                ViewBag.Msg = msg;
+            }
+            return View(role);
+        }
+        return RedirectToAction("Index");
+    }
+    [HttpPost]
+    public async Task<IActionResult> Delete(string id)
+    {
+        var role = await _roleManager.FindByIdAsync(id);
+        if (role != null)
+        {
+            var result = await _roleManager.DeleteAsync(role);
+            if (result.Succeeded)
+            {
+                return RedirectToAction("Index");
+            }
+            else
+            {
+                string msg = "";
+                foreach (var error in result.Errors)
+                {
+                    //  msg += error.Code +  error.Description+ "\n";
+                    msg += $"{error.Code} - {error.Description} \n";
+                }
+                ViewBag.Msg = msg;
+                return RedirectToAction("Index");
+            }
+        }
+        return RedirectToAction("Index");
+    }
+
 }

@@ -10,6 +10,44 @@
     <a asp-action="Create" asp-controller="Project" class="btn btn-primary">Create New</a>
 </p>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#staticBackdrop" asp-action="Create" asp-controller="Project">
+    Create new
+    <i class="bi bi-plus"></i>
+</button>
+
+ <!-- Modal -->
+<div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1 class="modal-title fs-5" id="staticBackdropLabel">Create New Project</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <input type="hidden" name="Id" id="Id" />
+                    <label for="Name" class="form-label">Name</label>
+                    <input type="text" class="form-control" id="Name" name="Name" required/>
+                </div>
+                <div>
+                    <label for="Department" class="form-label">Department</label>
+                    <textarea class="form-control" id="Department" name="Department" rows="3" required></textarea>
+                </div>
+                <div>
+                    <label for="Description" class="form-label">Description</label>
+                    <textarea class="form-control" id="Description" name="Description" rows="3" required></textarea>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary" id="addProjectButton">Add</button>
+
+            </div>
+        </div>
+    </div>
+</div> 
+
 <table class="table">
     <thead>
         <tr>
@@ -20,7 +58,7 @@
         </tr>
     </thead>
     <tbody>
-        @foreach (var project in Model)
+        @* @foreach (var project in Model)
         {
             <tr>
                 <td>@project.Name</td>
@@ -30,11 +68,38 @@
                     <a class="btn btn-sm btn-danger" asp-action="Delete" asp-route-id="@project.Id">Delete</a>
                 </td>
             </tr>
-        }
+        } *@
     </tbody>
 </table>
 
 
 @section Scripts {
-    <partial name="_ValidationScriptsPartial" />
+    <script>
+            function load() {
+            $.ajax({
+                url: '/TaskList/Get',
+                type: 'GET',
+                success: function (data) {
+                    //  $('table').html(data);
+                    console.log(data);
+                    $('#tbl tbody').empty(); // Clear existing rows
+                    // Build table rows dynamically)
+
+                    var tr = "";
+                    $.each(data, function (index, item) {
+                        tr += "<tr>";
+                        tr += "<td>" + item.id + "</td>";
+                        tr += "<td>" + item.Name + "</td>";
+                        tr += "<td>" + item.Description + "</td>";
+                        tr += "<td><button type='button' class='btn btn-warning'  onclick='Edit(" + item.id + ")' ><i class='fa fa-pencil' aria-hidden='true'></i> </button> | <button type='button' class='btn btn-danger' onclick='Delete(" + item.id + ")' ><i class='fa fa-trash' aria-hidden='true'></i></button></td>";
+                        tr += "</tr>";
+                    });
+                    $('#tbl tbody').html(tr);
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error loading task list:', error);
+                }
+            });
+        }
+    </script>
 }

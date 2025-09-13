@@ -8,7 +8,7 @@ using Tasklyne.Data;
 
 #nullable disable
 
-namespace TaskManager.Migrations
+namespace Tasklyne.Migrations
 {
     [DbContext(typeof(TaskDbContext))]
     partial class TaskDbContextModelSnapshot : ModelSnapshot
