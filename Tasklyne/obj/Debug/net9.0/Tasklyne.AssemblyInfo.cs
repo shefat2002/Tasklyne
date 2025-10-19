@@ -16,7 +16,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("Tasklyne")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+9488cb1136d44aea6d844b9f4bd1fe0a7d2bb193")]
 [assembly: System.Reflection.AssemblyProductAttribute("Tasklyne")]
 [assembly: System.Reflection.AssemblyTitleAttribute("Tasklyne")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

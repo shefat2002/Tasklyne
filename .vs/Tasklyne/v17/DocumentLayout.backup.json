@@ -1,12 +1,167 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Projects\\Dotnet\\Tasklyne\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\models\\assignedtask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\models\\assignedtask.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\models\\tasklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\models\\tasklist.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\models\\projectdepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\models\\projectdepartment.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\models\\project.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\models\\department.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|d:\\projects\\dotnet\\tasklyne\\tasklyne\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{5B118F49-BD97-4134-8375-5BDF2D34F1AB}|Tasklyne\\Tasklyne.csproj|solutionrelative:tasklyne\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "AssignedTask.cs",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\AssignedTask.cs",
+              "RelativeDocumentMoniker": "Tasklyne\\Models\\AssignedTask.cs",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\AssignedTask.cs",
+              "RelativeToolTip": "Tasklyne\\Models\\AssignedTask.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T04:12:33.259Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "TaskList.cs",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\TaskList.cs",
+              "RelativeDocumentMoniker": "Tasklyne\\Models\\TaskList.cs",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\TaskList.cs",
+              "RelativeToolTip": "Tasklyne\\Models\\TaskList.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-19T03:57:28.6Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ProjectDepartment.cs",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\ProjectDepartment.cs",
+              "RelativeDocumentMoniker": "Tasklyne\\Models\\ProjectDepartment.cs",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\ProjectDepartment.cs",
+              "RelativeToolTip": "Tasklyne\\Models\\ProjectDepartment.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T18:23:14.603Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Project.cs",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\Project.cs",
+              "RelativeDocumentMoniker": "Tasklyne\\Models\\Project.cs",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\Project.cs",
+              "RelativeToolTip": "Tasklyne\\Models\\Project.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-18T18:13:36.406Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Tasklyne\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Tasklyne\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAA1AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T21:29:44.781Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "ScaffoldingReadMe.txt",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\ScaffoldingReadMe.txt",
+              "RelativeDocumentMoniker": "Tasklyne\\ScaffoldingReadMe.txt",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\ScaffoldingReadMe.txt",
+              "RelativeToolTip": "Tasklyne\\ScaffoldingReadMe.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-10-17T21:29:33.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "Tasklyne\\Models\\Employee.cs",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\Employee.cs",
+              "RelativeToolTip": "Tasklyne\\Models\\Employee.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAABaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T21:26:56.667Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Department.cs",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\Department.cs",
+              "RelativeDocumentMoniker": "Tasklyne\\Models\\Department.cs",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Models\\Department.cs",
+              "RelativeToolTip": "Tasklyne\\Models\\Department.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-10-17T21:23:26.449Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\appsettings.json",
+              "RelativeDocumentMoniker": "Tasklyne\\appsettings.json",
+              "ToolTip": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\appsettings.json",
+              "RelativeToolTip": "Tasklyne\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAEAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2025-10-17T21:20:35.875Z"
+            }
+          ]
+        }
+      ]
     }
   ]
 }
