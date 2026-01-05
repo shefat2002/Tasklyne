@@ -632,6 +632,22 @@
           }
         }
       },
+      "Microsoft.AspNetCore.Authentication.Google/10.0.1": {
+        "type": "package",
+        "compile": {
+          "lib/net10.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "runtime": {
+          "lib/net10.0/Microsoft.AspNetCore.Authentication.Google.dll": {
+            "related": ".xml"
+          }
+        },
+        "frameworkReferences": [
+          "Microsoft.AspNetCore.App"
+        ]
+      },
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/10.0.1": {
         "type": "package",
         "dependencies": {
@@ -650,19 +666,6 @@
         "frameworkReferences": [
           "Microsoft.AspNetCore.App"
         ]
-      },
-      "Microsoft.AspNetCore.Identity/2.3.1": {
-        "type": "package",
-        "compile": {
-          "lib/netstandard2.0/_._": {
-            "related": ".xml"
-          }
-        },
-        "runtime": {
-          "lib/netstandard2.0/_._": {
-            "related": ".xml"
-          }
-        }
       },
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.1": {
         "type": "package",
@@ -3811,6 +3814,22 @@
         "logo.png"
       ]
     },
+    "Microsoft.AspNetCore.Authentication.Google/10.0.1": {
+      "sha512": "49T+gn1LyNDxme5HBnoEUFTFnpG8R9h2JFuaQp8+/EQFSZybIv4WMXdrQ1rbCU65NKG/jxVBsUU8/G8jKImJ2Q==",
+      "type": "package",
+      "path": "microsoft.aspnetcore.authentication.google/10.0.1",
+      "files": [
+        ".nupkg.metadata",
+        ".signature.p7s",
+        "Icon.png",
+        "PACKAGE.md",
+        "THIRD-PARTY-NOTICES.TXT",
+        "lib/net10.0/Microsoft.AspNetCore.Authentication.Google.dll",
+        "lib/net10.0/Microsoft.AspNetCore.Authentication.Google.xml",
+        "microsoft.aspnetcore.authentication.google.10.0.1.nupkg.sha512",
+        "microsoft.aspnetcore.authentication.google.nuspec"
+      ]
+    },
     "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore/10.0.1": {
       "sha512": "1d/r5maWKWO9+zf78KouQ8+y2PpCLl6qZ9vQAPTYtlOLPl9BoLq6+cydpocEENn0xUbdIocaoyRt+ZYbMVhOtw==",
       "type": "package",
@@ -3825,19 +3844,6 @@
         "lib/net10.0/Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.xml",
         "microsoft.aspnetcore.diagnostics.entityframeworkcore.10.0.1.nupkg.sha512",
         "microsoft.aspnetcore.diagnostics.entityframeworkcore.nuspec"
-      ]
-    },
-    "Microsoft.AspNetCore.Identity/2.3.1": {
-      "sha512": "JcQ4pNXg+IISfcR95jeO2ZRt38N67MrUEj28HBmwfqD96BUyw4S54tQhrBmCOyPlf2vgNvSz/tsGAG7EgC0yRg==",
-      "type": "package",
-      "path": "microsoft.aspnetcore.identity/2.3.1",
-      "files": [
-        ".nupkg.metadata",
-        ".signature.p7s",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Identity.dll",
-        "lib/netstandard2.0/Microsoft.AspNetCore.Identity.xml",
-        "microsoft.aspnetcore.identity.2.3.1.nupkg.sha512",
-        "microsoft.aspnetcore.identity.nuspec"
       ]
     },
     "Microsoft.AspNetCore.Identity.EntityFrameworkCore/10.0.1": {
@@ -7315,8 +7321,8 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "Microsoft.AspNetCore.Authentication.Google >= 10.0.1",
       "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore >= 10.0.1",
-      "Microsoft.AspNetCore.Identity >= 2.3.1",
       "Microsoft.AspNetCore.Identity.EntityFrameworkCore >= 10.0.1",
       "Microsoft.AspNetCore.Identity.UI >= 10.0.1",
       "Microsoft.EntityFrameworkCore >= 10.0.1",
@@ -7328,26 +7334,32 @@
     ]
   },
   "packageFolders": {
-    "/Users/admin/.nuget/packages/": {}
+    "C:\\Users\\Shefat\\.nuget\\packages\\": {},
+    "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "/Users/admin/Documents/PersonalProjects/Tasklyne/Tasklyne/Tasklyne.csproj",
+      "projectUniqueName": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj",
       "projectName": "Tasklyne",
-      "projectPath": "/Users/admin/Documents/PersonalProjects/Tasklyne/Tasklyne/Tasklyne.csproj",
-      "packagesPath": "/Users/admin/.nuget/packages/",
-      "outputPath": "/Users/admin/Documents/PersonalProjects/Tasklyne/Tasklyne/obj/",
+      "projectPath": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj",
+      "packagesPath": "C:\\Users\\Shefat\\.nuget\\packages\\",
+      "outputPath": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\obj\\",
       "projectStyle": "PackageReference",
+      "fallbackFolders": [
+        "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+      ],
       "configFilePaths": [
-        "/Users/admin/.nuget/NuGet/NuGet.Config"
+        "C:\\Users\\Shefat\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+        "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
         "net10.0"
       ],
       "sources": {
-        "https://api.nuget.org/v3/index.json": {},
-        "https://f.feedz.io/davidfowl/aspire/nuget/index.json": {}
+        "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+        "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
         "net10.0": {
@@ -7371,13 +7383,13 @@
       "net10.0": {
         "targetAlias": "net10.0",
         "dependencies": {
-          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
+          "Microsoft.AspNetCore.Authentication.Google": {
             "target": "Package",
             "version": "[10.0.1, )"
           },
-          "Microsoft.AspNetCore.Identity": {
+          "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
             "target": "Package",
-            "version": "[2.3.1, )"
+            "version": "[10.0.1, )"
           },
           "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
             "target": "Package",
@@ -7435,7 +7447,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -7852,17 +7864,5 @@
         }
       }
     }
-  },
-  "logs": [
-    {
-      "code": "NU1510",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "PackageReference Microsoft.AspNetCore.Identity will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
-      "libraryId": "Microsoft.AspNetCore.Identity",
-      "targetGraphs": [
-        "net10.0"
-      ]
-    }
-  ]
+  }
 }

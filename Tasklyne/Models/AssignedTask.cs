@@ -31,7 +31,7 @@ public class AssignedTask
     [ForeignKey("TaskList")]
     public int TaskListId { get; set; }
     [ForeignKey("Employee")]
-    public int EmployeeId { get; set; }
+    public string EmployeeId { get; set; } = string.Empty;
     public DateTime AssignedDate { get; set; } = DateTime.Now;
     public DateTime? DueDate { get; set; }
     public PriorityLevel Priority { get; set; } = PriorityLevel.Medium;
@@ -50,9 +50,5 @@ public class AssignedTask
     public TaskList? TaskList { get; set; }
     [ValidateNever]
     public Employee? Employee { get; set; }
-    [NotMapped]
-    public ICollection<TaskList> TaskLists { get; set; } = new List<TaskList>();
-    [NotMapped]
-    public ICollection<Employee> Employees { get; set; } = new List<Employee>();
 
 }

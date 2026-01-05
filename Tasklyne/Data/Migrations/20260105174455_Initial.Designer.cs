@@ -12,15 +12,15 @@ using Tasklyne.Data;
 namespace Tasklyne.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20251128120144_update1")]
-    partial class update1
+    [Migration("20260105174455_Initial")]
+    partial class Initial
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("ProductVersion", "9.0.10")
+                .HasAnnotation("ProductVersion", "10.0.1")
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
@@ -75,80 +75,6 @@ namespace Tasklyne.Data.Migrations
                     b.HasIndex("RoleId");
 
                     b.ToTable("AspNetRoleClaims", (string)null);
-                });
-
-            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUser", b =>
-                {
-                    b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int>("AccessFailedCount")
-                        .HasColumnType("int");
-
-                    b.Property<string>("ConcurrencyStamp")
-                        .IsConcurrencyToken()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasMaxLength(13)
-                        .HasColumnType("nvarchar(13)");
-
-                    b.Property<string>("Email")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<bool>("EmailConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<bool>("LockoutEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTimeOffset?>("LockoutEnd")
-                        .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("NormalizedEmail")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("NormalizedUserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.Property<string>("PasswordHash")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("PhoneNumberConfirmed")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("TwoFactorEnabled")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("UserName")
-                        .HasMaxLength(256)
-                        .HasColumnType("nvarchar(256)");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("NormalizedEmail")
-                        .HasDatabaseName("EmailIndex");
-
-                    b.HasIndex("NormalizedUserName")
-                        .IsUnique()
-                        .HasDatabaseName("UserNameIndex")
-                        .HasFilter("[NormalizedUserName] IS NOT NULL");
-
-                    b.ToTable("AspNetUsers", (string)null);
-
-                    b.HasDiscriminator().HasValue("IdentityUser");
-
-                    b.UseTphMappingStrategy();
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -238,17 +164,21 @@ namespace Tasklyne.Data.Migrations
 
             modelBuilder.Entity("Tasklyne.Models.AssignedTask", b =>
                 {
-                    b.Property<int>("TaskListId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("nvarchar(450)");
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<DateTime>("AssignedDate")
                         .HasColumnType("datetime2");
 
                     b.Property<DateTime?>("DueDate")
                         .HasColumnType("datetime2");
+
+                    b.Property<string>("EmployeeId")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Priority")
                         .HasColumnType("int");
@@ -262,12 +192,12 @@ namespace Tasklyne.Data.Migrations
                     b.Property<DateTime?>("ReviewedDate")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Reviewer")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<string>("ReviewerComments")
                         .HasMaxLength(255)
                         .HasColumnType("nvarchar(255)");
-
-                    b.Property<string>("ReviewerId")
-                        .HasColumnType("nvarchar(450)");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -275,13 +205,16 @@ namespace Tasklyne.Data.Migrations
                     b.Property<DateTime?>("SubmittedDate")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("TaskListId", "EmployeeId");
+                    b.Property<int>("TaskListId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("EmployeeId");
 
                     b.HasIndex("ProjectTaskId");
 
-                    b.HasIndex("ReviewerId");
+                    b.HasIndex("TaskListId");
 
                     b.ToTable("AssignedTasks");
                 });
@@ -303,9 +236,94 @@ namespace Tasklyne.Data.Migrations
                         .HasMaxLength(15)
                         .HasColumnType("nvarchar(15)");
 
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
+                    b.HasIndex("ProjectId");
+
                     b.ToTable("Departments");
+                });
+
+            modelBuilder.Entity("Tasklyne.Models.Employee", b =>
+                {
+                    b.Property<string>("Id")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("DepartmentId")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Email")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("FullName")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
+
+                    b.Property<string>("Nickname")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("nvarchar(10)");
+
+                    b.Property<string>("NormalizedEmail")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("DepartmentId");
+
+                    b.HasIndex("NormalizedEmail")
+                        .HasDatabaseName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasDatabaseName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers", (string)null);
                 });
 
             modelBuilder.Entity("Tasklyne.Models.Project", b =>
@@ -335,15 +353,23 @@ namespace Tasklyne.Data.Migrations
 
             modelBuilder.Entity("Tasklyne.Models.ProjectDepartment", b =>
                 {
-                    b.Property<int>("ProjectId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("DepartmentId")
                         .HasColumnType("int");
 
-                    b.HasKey("ProjectId", "DepartmentId");
+                    b.Property<int>("ProjectId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
 
                     b.HasIndex("DepartmentId");
+
+                    b.HasIndex("ProjectId");
 
                     b.ToTable("ProjectDepartments");
                 });
@@ -387,26 +413,46 @@ namespace Tasklyne.Data.Migrations
                     b.ToTable("ProjectTasks");
                 });
 
-            modelBuilder.Entity("Tasklyne.Models.Employee", b =>
+            modelBuilder.Entity("Tasklyne.Models.TaskList", b =>
                 {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.Property<int?>("DepartmentId")
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    b.Property<string>("FullName")
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedBy")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
+                    b.Property<string>("Description")
+                        .HasMaxLength(30)
+                        .HasColumnType("nvarchar(30)");
+
+                    b.Property<DateTime?>("DueDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("EmployeeId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
-                    b.Property<string>("Nickname")
-                        .IsRequired()
-                        .HasMaxLength(10)
-                        .HasColumnType("nvarchar(10)");
+                    b.Property<int?>("ProjectId")
+                        .HasColumnType("int");
 
-                    b.HasIndex("DepartmentId");
+                    b.HasKey("Id");
 
-                    b.HasDiscriminator().HasValue("Employee");
+                    b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ProjectId");
+
+                    b.ToTable("TaskList");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -420,7 +466,7 @@ namespace Tasklyne.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Tasklyne.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -429,7 +475,7 @@ namespace Tasklyne.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Tasklyne.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -444,7 +490,7 @@ namespace Tasklyne.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Tasklyne.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -453,7 +499,7 @@ namespace Tasklyne.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Microsoft.AspNetCore.Identity.IdentityUser", null)
+                    b.HasOne("Tasklyne.Models.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -468,19 +514,37 @@ namespace Tasklyne.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tasklyne.Models.ProjectTask", "ProjectTask")
+                    b.HasOne("Tasklyne.Models.ProjectTask", null)
                         .WithMany("AssignedTasks")
                         .HasForeignKey("ProjectTaskId");
 
-                    b.HasOne("Tasklyne.Models.Employee", "Reviewer")
-                        .WithMany("ReviewedTasks")
-                        .HasForeignKey("ReviewerId");
+                    b.HasOne("Tasklyne.Models.TaskList", "TaskList")
+                        .WithMany()
+                        .HasForeignKey("TaskListId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Employee");
 
-                    b.Navigation("ProjectTask");
+                    b.Navigation("TaskList");
+                });
 
-                    b.Navigation("Reviewer");
+            modelBuilder.Entity("Tasklyne.Models.Department", b =>
+                {
+                    b.HasOne("Tasklyne.Models.Project", null)
+                        .WithMany("Departments")
+                        .HasForeignKey("ProjectId");
+                });
+
+            modelBuilder.Entity("Tasklyne.Models.Employee", b =>
+                {
+                    b.HasOne("Tasklyne.Models.Department", "Department")
+                        .WithMany("Employees")
+                        .HasForeignKey("DepartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Department");
                 });
 
             modelBuilder.Entity("Tasklyne.Models.ProjectDepartment", b =>
@@ -492,7 +556,7 @@ namespace Tasklyne.Data.Migrations
                         .IsRequired();
 
                     b.HasOne("Tasklyne.Models.Project", "Project")
-                        .WithMany("ProjectDepartments")
+                        .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -505,13 +569,13 @@ namespace Tasklyne.Data.Migrations
             modelBuilder.Entity("Tasklyne.Models.ProjectTask", b =>
                 {
                     b.HasOne("Tasklyne.Models.Employee", "CreatedBy")
-                        .WithMany("TaskLists")
+                        .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Tasklyne.Models.Project", "Project")
-                        .WithMany("TaskLists")
+                        .WithMany()
                         .HasForeignKey("ProjectId");
 
                     b.Navigation("CreatedBy");
@@ -519,13 +583,15 @@ namespace Tasklyne.Data.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("Tasklyne.Models.Employee", b =>
+            modelBuilder.Entity("Tasklyne.Models.TaskList", b =>
                 {
-                    b.HasOne("Tasklyne.Models.Department", "Department")
-                        .WithMany("Employees")
-                        .HasForeignKey("DepartmentId");
+                    b.HasOne("Tasklyne.Models.Employee", null)
+                        .WithMany("CreatedTasks")
+                        .HasForeignKey("EmployeeId");
 
-                    b.Navigation("Department");
+                    b.HasOne("Tasklyne.Models.Project", null)
+                        .WithMany("TaskLists")
+                        .HasForeignKey("ProjectId");
                 });
 
             modelBuilder.Entity("Tasklyne.Models.Department", b =>
@@ -535,9 +601,16 @@ namespace Tasklyne.Data.Migrations
                     b.Navigation("ProjectDepartments");
                 });
 
+            modelBuilder.Entity("Tasklyne.Models.Employee", b =>
+                {
+                    b.Navigation("AssignedTasks");
+
+                    b.Navigation("CreatedTasks");
+                });
+
             modelBuilder.Entity("Tasklyne.Models.Project", b =>
                 {
-                    b.Navigation("ProjectDepartments");
+                    b.Navigation("Departments");
 
                     b.Navigation("TaskLists");
                 });
@@ -545,15 +618,6 @@ namespace Tasklyne.Data.Migrations
             modelBuilder.Entity("Tasklyne.Models.ProjectTask", b =>
                 {
                     b.Navigation("AssignedTasks");
-                });
-
-            modelBuilder.Entity("Tasklyne.Models.Employee", b =>
-                {
-                    b.Navigation("AssignedTasks");
-
-                    b.Navigation("ReviewedTasks");
-
-                    b.Navigation("TaskLists");
                 });
 #pragma warning restore 612, 618
         }

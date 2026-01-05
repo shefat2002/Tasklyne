@@ -13,10 +13,7 @@ public class ProjectDepartment
     [ForeignKey("Department")]
     public int DepartmentId { get; set; }
     [ValidateNever]
-    public Department Department { get; set; }
+    public Department Department { get; set; } = new Department();
 
-    [NotMapped]
-    public ICollection<Department>? Departments { get; set; }
-    [NotMapped]
-    public ICollection<Project>? Projects { get; set; }
+    
 }
