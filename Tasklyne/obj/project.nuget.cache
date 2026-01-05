@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "imv5/tEEybc=",
+  "dgSpecHash": "p5FrXZasShI=",
   "success": true,
   "projectFilePath": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj",
   "expectedPackageFiles": [
@@ -58,6 +58,7 @@
     "C:\\Users\\Shefat\\.nuget\\packages\\humanizer.core.zh-hant\\2.14.1\\humanizer.core.zh-hant.2.14.1.nupkg.sha512",
     "C:\\Users\\Shefat\\.nuget\\packages\\microsoft.aspnetcore.authentication.google\\10.0.1\\microsoft.aspnetcore.authentication.google.10.0.1.nupkg.sha512",
     "C:\\Users\\Shefat\\.nuget\\packages\\microsoft.aspnetcore.diagnostics.entityframeworkcore\\10.0.1\\microsoft.aspnetcore.diagnostics.entityframeworkcore.10.0.1.nupkg.sha512",
+    "C:\\Users\\Shefat\\.nuget\\packages\\microsoft.aspnetcore.identity\\2.3.1\\microsoft.aspnetcore.identity.2.3.1.nupkg.sha512",
     "C:\\Users\\Shefat\\.nuget\\packages\\microsoft.aspnetcore.identity.entityframeworkcore\\10.0.1\\microsoft.aspnetcore.identity.entityframeworkcore.10.0.1.nupkg.sha512",
     "C:\\Users\\Shefat\\.nuget\\packages\\microsoft.aspnetcore.identity.ui\\10.0.1\\microsoft.aspnetcore.identity.ui.10.0.1.nupkg.sha512",
     "C:\\Users\\Shefat\\.nuget\\packages\\microsoft.aspnetcore.razor.language\\6.0.24\\microsoft.aspnetcore.razor.language.6.0.24.nupkg.sha512",
@@ -147,5 +148,18 @@
     "C:\\Users\\Shefat\\.nuget\\packages\\system.security.permissions\\9.0.0\\system.security.permissions.9.0.0.nupkg.sha512",
     "C:\\Users\\Shefat\\.nuget\\packages\\system.windows.extensions\\9.0.0\\system.windows.extensions.9.0.0.nupkg.sha512"
   ],
-  "logs": []
+  "logs": [
+    {
+      "code": "NU1510",
+      "level": "Warning",
+      "message": "PackageReference Microsoft.AspNetCore.Identity will not be pruned. Consider removing this package from your dependencies, as it is likely unnecessary.",
+      "projectPath": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj",
+      "warningLevel": 1,
+      "filePath": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj",
+      "libraryId": "Microsoft.AspNetCore.Identity",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }
