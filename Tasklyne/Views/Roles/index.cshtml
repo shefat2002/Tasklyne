@@ -1,0 +1,47 @@
+@model IEnumerable<Microsoft.AspNetCore.Identity.IdentityRole>
+@{
+    ViewData["Title"] = "Roles";
+}
+
+<div class="card">
+    <div class="card-header">
+        <h3 class="card-title">Manage User Roles</h3>
+        <div class="card-tools">
+            <a onclick="showInPopup('@Url.Action("AddOrEdit", "Roles", null, Context.Request.Scheme)', 'New Role')" 
+               class="btn btn-success btn-sm text-white">
+                <i class="fas fa-plus"></i> New Role
+            </a>
+        </div>
+    </div>
+    <div class="card-body p-0">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>Role Name</th>
+                <th>Id</th>
+                <th class="text-right">Actions</th>
+            </tr>
+            </thead>
+            <tbody>
+            @foreach (var role in Model)
+            {
+                <tr>
+                    <td>@role.Name</td>
+                    <td><small class="text-muted">@role.Id</small></td>
+                    <td class="text-right">
+                        <a onclick="showInPopup('@Url.Action("AddOrEdit", "Roles", new { id = role.Id }, Context.Request.Scheme)', 'Edit Role')" 
+                           class="btn btn-info btn-sm text-white">
+                            <i class="fas fa-pencil-alt"></i>
+                        </a>
+                        <form asp-action="Delete" asp-route-id="@role.Id" onsubmit="return confirm('Delete this role?');" style="display:inline">
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash"></i>
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+            </tbody>
+        </table>
+    </div>
+</div>

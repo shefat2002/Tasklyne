@@ -1,0 +1,28 @@
+@model Microsoft.AspNetCore.Identity.IdentityRole
+@{ Layout = null; }
+
+<div class="row">
+    <div class="col-md-12">
+        <form asp-action="AddOrEdit" asp-route-id="@Model.Id" onsubmit="return jQueryAjaxPost(this);">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            
+            @if(!string.IsNullOrEmpty(Model.Id))
+            {
+                <input type="hidden" asp-for="ConcurrencyStamp" />
+            }
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label">Role Name</label>
+                <input asp-for="Name" class="form-control" placeholder="e.g. ProjectManager, TeamLead" required />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="modal-footer justify-content-between">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save Role</button>
+            </div>
+        </form>
+    </div>
+</div>
+@{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
