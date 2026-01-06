@@ -1,32 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj": {}
+    "/Users/admin/Documents/PersonalProjects/Tasklyne/Tasklyne/Tasklyne.csproj": {}
   },
   "projects": {
-    "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj": {
+    "/Users/admin/Documents/PersonalProjects/Tasklyne/Tasklyne/Tasklyne.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj",
+        "projectUniqueName": "/Users/admin/Documents/PersonalProjects/Tasklyne/Tasklyne/Tasklyne.csproj",
         "projectName": "Tasklyne",
-        "projectPath": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\Tasklyne.csproj",
-        "packagesPath": "C:\\Users\\Shefat\\.nuget\\packages\\",
-        "outputPath": "D:\\Projects\\Dotnet\\Tasklyne\\Tasklyne\\obj\\",
+        "projectPath": "/Users/admin/Documents/PersonalProjects/Tasklyne/Tasklyne/Tasklyne.csproj",
+        "packagesPath": "/Users/admin/.nuget/packages/",
+        "outputPath": "/Users/admin/Documents/PersonalProjects/Tasklyne/Tasklyne/obj/",
         "projectStyle": "PackageReference",
-        "fallbackFolders": [
-          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
-        ],
         "configFilePaths": [
-          "C:\\Users\\Shefat\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "/Users/admin/.nuget/NuGet/NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net10.0"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-          "https://api.nuget.org/v3/index.json": {}
+          "https://api.nuget.org/v3/index.json": {},
+          "https://f.feedz.io/davidfowl/aspire/nuget/index.json": {}
         },
         "frameworks": {
           "net10.0": {
@@ -57,6 +52,10 @@
             "Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore": {
               "target": "Package",
               "version": "[10.0.1, )"
+            },
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.3.1, )"
             },
             "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
               "target": "Package",
@@ -114,7 +113,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.100/PortableRuntimeIdentifierGraph.json",
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/10.0.100/PortableRuntimeIdentifierGraph.json",
           "packagesToPrune": {
             "Microsoft.AspNetCore": "(,10.0.32767]",
             "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
