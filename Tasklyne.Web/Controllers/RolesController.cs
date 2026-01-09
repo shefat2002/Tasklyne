@@ -38,6 +38,12 @@ public class RolesController(ILogger<RolesController> logger, RoleManager<Identi
         if (ModelState.IsValid)
         {
             // Check if role already exists
+            if (role.Name == null)
+            {
+                ModelState.AddModelError("Name", "Role name is required");
+                return PartialView(role);
+            }
+
             bool roleExists = await _roleManager.RoleExistsAsync(role.Name);
             if (roleExists && string.IsNullOrEmpty(id)) // Only if creating new
             {
