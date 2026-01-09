@@ -1,8 +1,9 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Tasklyne.Models;
+using Microsoft.Extensions.DependencyInjection;
+using Tasklyne.Domain.Entities;
 
-namespace Tasklyne.Data;
+namespace Tasklyne.Infrastructure.Data;
 
 public class DbInitializer
 {

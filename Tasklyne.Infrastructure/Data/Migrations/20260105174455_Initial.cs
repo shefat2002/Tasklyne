@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 #nullable disable
 
-namespace Tasklyne.Data.Migrations
+namespace Tasklyne.Infrastructure.Data.Migrations
 {
     /// <inheritdoc />
     public partial class Initial : Migration

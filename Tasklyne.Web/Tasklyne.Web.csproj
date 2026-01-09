@@ -29,7 +29,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\Tasklyne.Application\Tasklyne.Application.csproj" />
     <ProjectReference Include="..\Tasklyne.Domain\Tasklyne.Domain.csproj" />
+    <ProjectReference Include="..\Tasklyne.Infrastructure\Tasklyne.Infrastructure.csproj" />
   </ItemGroup>
 
 </Project>

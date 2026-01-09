@@ -1,5 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 
 namespace Tasklyne.Domain.Entities;
 
@@ -13,9 +14,9 @@ public class AssignedTask
     public DateTime AssignedDate { get; set; } = DateTime.Now;
     public DateTime? DueDate { get; set; }
     public Enums.PriorityLevel Priority { get; set; } = Enums.PriorityLevel.Medium;
-    public TaskStatus Status { get; set; } = TaskStatus.NotStarted;
+    public Enums.TaskStatus Status { get; set; } = Enums.TaskStatus.NotStarted;
     public DateTime? SubmittedDate { get; set; }
-    public Enums.ReviewStatus ReviewStatus { get; set; } = ReviewStatus.NotSubmitted;
+    public Enums.ReviewStatus ReviewStatus { get; set; } = Enums.ReviewStatus.NotSubmitted;
     [MaxLength(255, ErrorMessage = "The maximum length is 255 characters.")]
     public string? ReviewerComments { get; set; }
     public DateTime? ReviewedDate { get; set; }

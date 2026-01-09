@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Tasklyne.Data;
-using Tasklyne.Models;
+using Tasklyne.Domain.Entities;
+using Tasklyne.Infrastructure.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 

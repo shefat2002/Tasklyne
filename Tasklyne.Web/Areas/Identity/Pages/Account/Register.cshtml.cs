@@ -18,7 +18,7 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
-using Tasklyne.Models;
+using Tasklyne.Domain.Entities;
 
 namespace Tasklyne.Areas.Identity.Pages.Account
 {

@@ -1,5 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Tasklyne.Data;
+using Tasklyne.Infrastructure.Data;
 
 namespace Tasklyne.Controllers;
 

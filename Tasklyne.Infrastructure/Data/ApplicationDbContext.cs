@@ -1,15 +1,11 @@
 ﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using Tasklyne.Models;
+using Tasklyne.Domain.Entities;
 
-namespace Tasklyne.Data;
+namespace Tasklyne.Infrastructure.Data;
 
-public class ApplicationDbContext : IdentityDbContext<Employee>
+public class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : IdentityDbContext<Employee>(options)
 {
-    public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-        : base(options)
-    {
-    }
     public DbSet<AssignedTask> AssignedTasks { get; set; }
     public DbSet<Department> Departments { get; set; }
     public DbSet<Project> Projects { get; set; }

@@ -1,6 +1,6 @@
 using System.Diagnostics;
 using Microsoft.AspNetCore.Mvc;
-using Tasklyne.Models;
+using Tasklyne.Domain.Entities;
 
 namespace Tasklyne.Controllers
 {
