@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tasklyne.Models;
+namespace Tasklyne.Domain.Entities;
 
 public class TaskList
 {

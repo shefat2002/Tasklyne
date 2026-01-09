@@ -28,4 +28,8 @@
     <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="10.0.1" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Tasklyne.Domain\Tasklyne.Domain.csproj" />
+  </ItemGroup>
+
 </Project>

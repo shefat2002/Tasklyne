@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Tasklyne.Models;
+namespace Tasklyne.Domain.Entities;
 
 public class Project
 {

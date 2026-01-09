@@ -1,4 +1,4 @@
-﻿namespace Tasklyne.Models;
+﻿namespace Tasklyne.Domain.Entities;
 
 public class Enums
 {

@@ -1,30 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace Tasklyne.Models;
+namespace Tasklyne.Domain.Entities;
 
-public enum TaskStatus
-{
-    NotStarted,
-    InProgress,
-    Completed,
-    OnHold,
-    Cancelled
-}
-public enum PriorityLevel
-{
-    Low,
-    Medium,
-    High
-}
-public enum ReviewStatus
-{
-    NotSubmitted,
-    Pending,
-    Approved,
-    Rejected
-}
 public class AssignedTask
 {
     public int Id { get; set; }
@@ -34,10 +12,10 @@ public class AssignedTask
     public string EmployeeId { get; set; } = string.Empty;
     public DateTime AssignedDate { get; set; } = DateTime.Now;
     public DateTime? DueDate { get; set; }
-    public PriorityLevel Priority { get; set; } = PriorityLevel.Medium;
+    public Enums.PriorityLevel Priority { get; set; } = Enums.PriorityLevel.Medium;
     public TaskStatus Status { get; set; } = TaskStatus.NotStarted;
     public DateTime? SubmittedDate { get; set; }
-    public ReviewStatus ReviewStatus { get; set; } = ReviewStatus.NotSubmitted;
+    public Enums.ReviewStatus ReviewStatus { get; set; } = ReviewStatus.NotSubmitted;
     [MaxLength(255, ErrorMessage = "The maximum length is 255 characters.")]
     public string? ReviewerComments { get; set; }
     public DateTime? ReviewedDate { get; set; }
