@@ -1,6 +1,6 @@
 ﻿using System.Linq.Expressions;
 
-namespace Tasklyne.Application.RepositoryInterfaces;
+namespace Tasklyne.Application.Common.Interfaces;
 
 public interface ITasklyne<T> where T : class
 {
