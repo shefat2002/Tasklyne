@@ -1,0 +1,56 @@
+{
+  "version": "1.0",
+  "defaultProvider": "cdnjs",
+  "libraries": [
+    {
+      "library": "admin-lte@4.0.0-rc4",
+      "destination": "wwwroot/adminlte/",
+      "files": [
+        "css/adminlte.css",
+        "css/adminlte.min.css",
+        "js/adminlte.js",
+        "js/adminlte.min.js"
+      ]
+    },
+    {
+      "library": "bootstrap@5.3.3",
+      "destination": "wwwroot/lib/bootstrap/",
+      "files": [
+        "css/bootstrap.min.css",
+        "js/bootstrap.bundle.min.js"
+      ]
+    },
+    {
+      "library": "overlayscrollbars@2.10.0",
+      "destination": "wwwroot/lib/overlayscrollbars/",
+      "files": [
+        "styles/overlayscrollbars.min.css",
+        "browser/overlayscrollbars.browser.es6.min.js"
+      ]
+    },
+    {
+      "library": "bootstrap-icons@1.11.3",
+      "destination": "wwwroot/lib/bootstrap-icons/",
+      "files": [
+        "font/bootstrap-icons.min.css",
+        "font/fonts/bootstrap-icons.woff2",
+        "font/fonts/bootstrap-icons.woff"
+      ]
+    },
+    {
+      "library": "apexcharts@3.45.2",
+      "destination": "wwwroot/lib/apexcharts/",
+      "files": [
+        "apexcharts.min.js",
+        "apexcharts.css"
+      ]
+    },
+    {
+      "library": "Sortable@1.15.2",
+      "destination": "wwwroot/lib/sortablejs/",
+      "files": [
+        "Sortable.min.js"
+      ]
+    }
+  ]
+}
