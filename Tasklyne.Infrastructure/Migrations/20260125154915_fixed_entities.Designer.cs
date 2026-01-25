@@ -3,17 +3,20 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Tasklyne.Infrastructure.Data;
 
 #nullable disable
 
-namespace Tasklyne.Infrastructure.Data.Migrations
+namespace Tasklyne.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20260125154915_fixed_entities")]
+    partial class fixed_entities
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -467,13 +470,11 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tasklyne.Domain.Entities.ProjectTask", "ProjectTask")
+                    b.HasOne("Tasklyne.Domain.Entities.ProjectTask", null)
                         .WithMany("AssignedTasks")
                         .HasForeignKey("ProjectTaskId");
 
                     b.Navigation("Employee");
-
-                    b.Navigation("ProjectTask");
                 });
 
             modelBuilder.Entity("Tasklyne.Domain.Entities.Department", b =>
@@ -516,13 +517,13 @@ namespace Tasklyne.Infrastructure.Data.Migrations
             modelBuilder.Entity("Tasklyne.Domain.Entities.ProjectTask", b =>
                 {
                     b.HasOne("Tasklyne.Domain.Entities.Employee", "CreatedBy")
-                        .WithMany("CreatedProjectTasks")
+                        .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Tasklyne.Domain.Entities.Project", "Project")
-                        .WithMany("ProjectTasks")
+                        .WithMany()
                         .HasForeignKey("ProjectId");
 
                     b.Navigation("CreatedBy");
@@ -540,15 +541,11 @@ namespace Tasklyne.Infrastructure.Data.Migrations
             modelBuilder.Entity("Tasklyne.Domain.Entities.Employee", b =>
                 {
                     b.Navigation("AssignedTasks");
-
-                    b.Navigation("CreatedProjectTasks");
                 });
 
             modelBuilder.Entity("Tasklyne.Domain.Entities.Project", b =>
                 {
                     b.Navigation("Departments");
-
-                    b.Navigation("ProjectTasks");
                 });
 
             modelBuilder.Entity("Tasklyne.Domain.Entities.ProjectTask", b =>
