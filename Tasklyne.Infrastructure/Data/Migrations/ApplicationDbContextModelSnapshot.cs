@@ -159,7 +159,7 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.ToTable("AspNetUserTokens", (string)null);
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.AssignedTask", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.AssignedTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -211,12 +211,10 @@ namespace Tasklyne.Infrastructure.Data.Migrations
 
                     b.HasIndex("ProjectTaskId");
 
-                    b.HasIndex("TaskListId");
-
                     b.ToTable("AssignedTasks");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.Department", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.Department", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -243,7 +241,7 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.ToTable("Departments");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.Employee", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.Employee", b =>
                 {
                     b.Property<string>("Id")
                         .HasColumnType("nvarchar(450)");
@@ -323,7 +321,7 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.ToTable("AspNetUsers", (string)null);
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.Project", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.Project", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -348,7 +346,7 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.ToTable("Projects");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.ProjectDepartment", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.ProjectDepartment", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -371,7 +369,7 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.ToTable("ProjectDepartments");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.ProjectTask", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.ProjectTask", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -410,48 +408,6 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.ToTable("ProjectTasks");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.TaskList", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("CreatedBy")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<string>("Description")
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
-                    b.Property<DateTime?>("DueDate")
-                        .HasColumnType("datetime2");
-
-                    b.Property<string>("EmployeeId")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
-                    b.Property<int?>("ProjectId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("EmployeeId");
-
-                    b.HasIndex("ProjectId");
-
-                    b.ToTable("TaskList");
-                });
-
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("Microsoft.AspNetCore.Identity.IdentityRole", null)
@@ -463,7 +419,7 @@ namespace Tasklyne.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
                 {
-                    b.HasOne("Tasklyne.Web.Models.Employee", null)
+                    b.HasOne("Tasklyne.Domain.Entities.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -472,7 +428,7 @@ namespace Tasklyne.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", b =>
                 {
-                    b.HasOne("Tasklyne.Web.Models.Employee", null)
+                    b.HasOne("Tasklyne.Domain.Entities.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -487,7 +443,7 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tasklyne.Web.Models.Employee", null)
+                    b.HasOne("Tasklyne.Domain.Entities.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -496,46 +452,38 @@ namespace Tasklyne.Infrastructure.Data.Migrations
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", b =>
                 {
-                    b.HasOne("Tasklyne.Web.Models.Employee", null)
+                    b.HasOne("Tasklyne.Domain.Entities.Employee", null)
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.AssignedTask", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.AssignedTask", b =>
                 {
-                    b.HasOne("Tasklyne.Web.Models.Employee", "Employee")
+                    b.HasOne("Tasklyne.Domain.Entities.Employee", "Employee")
                         .WithMany("AssignedTasks")
                         .HasForeignKey("EmployeeId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tasklyne.Web.Models.ProjectTask", null)
+                    b.HasOne("Tasklyne.Domain.Entities.ProjectTask", null)
                         .WithMany("AssignedTasks")
                         .HasForeignKey("ProjectTaskId");
 
-                    b.HasOne("Tasklyne.Web.Models.TaskList", "TaskList")
-                        .WithMany()
-                        .HasForeignKey("TaskListId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Employee");
-
-                    b.Navigation("TaskList");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.Department", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.Department", b =>
                 {
-                    b.HasOne("Tasklyne.Web.Models.Project", null)
+                    b.HasOne("Tasklyne.Domain.Entities.Project", null)
                         .WithMany("Departments")
                         .HasForeignKey("ProjectId");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.Employee", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.Employee", b =>
                 {
-                    b.HasOne("Tasklyne.Web.Models.Department", "Department")
+                    b.HasOne("Tasklyne.Domain.Entities.Department", "Department")
                         .WithMany("Employees")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -544,15 +492,15 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.Navigation("Department");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.ProjectDepartment", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.ProjectDepartment", b =>
                 {
-                    b.HasOne("Tasklyne.Web.Models.Department", "Department")
+                    b.HasOne("Tasklyne.Domain.Entities.Department", "Department")
                         .WithMany("ProjectDepartments")
                         .HasForeignKey("DepartmentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tasklyne.Web.Models.Project", "Project")
+                    b.HasOne("Tasklyne.Domain.Entities.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -563,15 +511,15 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.ProjectTask", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.ProjectTask", b =>
                 {
-                    b.HasOne("Tasklyne.Web.Models.Employee", "CreatedBy")
+                    b.HasOne("Tasklyne.Domain.Entities.Employee", "CreatedBy")
                         .WithMany()
                         .HasForeignKey("CreatedById")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Tasklyne.Web.Models.Project", "Project")
+                    b.HasOne("Tasklyne.Domain.Entities.Project", "Project")
                         .WithMany()
                         .HasForeignKey("ProjectId");
 
@@ -580,39 +528,24 @@ namespace Tasklyne.Infrastructure.Data.Migrations
                     b.Navigation("Project");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.TaskList", b =>
-                {
-                    b.HasOne("Tasklyne.Web.Models.Employee", null)
-                        .WithMany("CreatedTasks")
-                        .HasForeignKey("EmployeeId");
-
-                    b.HasOne("Tasklyne.Web.Models.Project", null)
-                        .WithMany("TaskLists")
-                        .HasForeignKey("ProjectId");
-                });
-
-            modelBuilder.Entity("Tasklyne.Web.Models.Department", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.Department", b =>
                 {
                     b.Navigation("Employees");
 
                     b.Navigation("ProjectDepartments");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.Employee", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.Employee", b =>
                 {
                     b.Navigation("AssignedTasks");
-
-                    b.Navigation("CreatedTasks");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.Project", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.Project", b =>
                 {
                     b.Navigation("Departments");
-
-                    b.Navigation("TaskLists");
                 });
 
-            modelBuilder.Entity("Tasklyne.Web.Models.ProjectTask", b =>
+            modelBuilder.Entity("Tasklyne.Domain.Entities.ProjectTask", b =>
                 {
                     b.Navigation("AssignedTasks");
                 });

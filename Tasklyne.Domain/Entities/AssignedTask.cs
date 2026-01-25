@@ -26,7 +26,7 @@ public class AssignedTask
 
     // Navigation Properties
     [ValidateNever]
-    public TaskList? TaskList { get; set; }
+    public ProjectTask? ProjectTask { get; set; } 
     [ValidateNever]
     public Employee? Employee { get; set; }
 

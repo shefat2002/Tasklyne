@@ -17,14 +17,10 @@ namespace Tasklyne.Domain.Entities
         [ForeignKey("Department")]
         public int DepartmentId { get; set; }
 
-        // Navigation property
-        
         // An Employee belongs to one Department
         public Department? Department { get; set; }
-        // Employee can be assigned multiple ProjectTasks
         public ICollection<AssignedTask>? AssignedTasks { get; set; } = new List<AssignedTask>();
-        // Employee can create multiple ProjectTasks
-        public ICollection<TaskList>? CreatedTasks { get; set; } = new List<TaskList>();
+        public ICollection<ProjectTask> CreatedProjectTasks { get; set; } = new List<ProjectTask>();
 
     }
 }

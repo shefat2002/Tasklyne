@@ -14,7 +14,7 @@ public class Project
     public DateTime StartDate { get; set; } = DateTime.Now;
 
     // Navigation Properties
-    public ICollection<TaskList>? TaskLists { get; set; } = new List<TaskList>();
+    public ICollection<ProjectTask>? ProjectTasks { get; set; } = new List<ProjectTask>();
     public ICollection<Department>? Departments { get; set; } = new List<Department>();
 
 }
