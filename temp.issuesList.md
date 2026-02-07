@@ -1,7 +1,3 @@
-Here are the task lists formatted as GitHub issues that you can create:
-
----
-
 ## Phase 1: Foundation Setup
 
 ### Issue #1: Create Shared Modal Component
